@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/coffee/browser",
+  "devCommand": "npm run start",
+  "installCommand": "npm install --legacy-peer-deps",
+  "framework": null
+}
+

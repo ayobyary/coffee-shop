@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:coffee": "node dist/coffee/server/server.mjs"
+    "serve:ssr:coffee": "node dist/coffee/server/server.mjs",
+    "deploy:coffee": "ng build --prod && vercel --prod",
+    "deploy:coffee:dev": "ng build --prod && vercel --prod --environment development"
   },
   "private": true,
   "dependencies": {

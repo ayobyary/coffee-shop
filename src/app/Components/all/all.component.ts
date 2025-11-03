@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { HeroComponent } from '../hero/hero.component';
 import { CategoryBannerComponent } from '../category-banner/category-banner.component';
+import { ProductsCategoryComponent } from '../products-category/products-category.component';
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 Swiper.use([Navigation]);
 @Component({
   selector: 'app-all',
   standalone: true,
-  imports: [HeaderComponent, HeroComponent, CategoryBannerComponent],
+  imports: [HeaderComponent, HeroComponent, CategoryBannerComponent, ProductsCategoryComponent],
   templateUrl: './all.component.html',
   styleUrl: './all.component.css'
 })

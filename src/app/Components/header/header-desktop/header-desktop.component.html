@@ -1,0 +1,169 @@
+<!-- header-desktop -->
+<header class="fixed z-50 top-9 right-0 left-0 hidden md:flex items-center w-[95%] lg:w-[90%] h-24 px-5 lg:px-10  py-5 mx-auto bg-black/50 rounded-3xl  backdrop-blur-[6px]">
+
+    <!-- دایو تراز کننده داخلی -->
+    <div class="flex flex-row justify-between  w-full ">
+  
+        <!-- login and meno -->
+        <!-- صفحه لاگین و منو -->
+        <nav class="flex gap-x-3   lg:gap-x-9   ">
+  
+            <!-- لوگو -->
+            <!-- logo -->
+            <div class=" w-14 h-14 flex items-center justify-center">
+                <img  src="assets/images/app-logo.png" alt="golden-coofe" class="w-full h-full">
+            </div>
+  
+            <!-- بخش منو -->
+            <!-- meno -->
+            <ul class="flex items-center gap-x-4   lg:gap-x-9 ml-3 text-gray-300/50 child:text-white/50 tracking-tightest child-hover:text-orange-200 child:leading-[56px] text-lg child:hover:visible">
+  
+  
+                <li class="font-Dana-Medium text-xl font-normal text-orange-200 ">
+                    <a href="#" >صفحه اصلی</a>
+                </li>
+  
+                <!-- Has sub meno -->
+                <!--  فروشگاه با زیر منو -->
+                <li  class="relative group ">
+                    <a href="#" >فروشگاه</a>
+  
+                    <!-- sub meno -->
+                    <!-- زیر منو -->
+                    <div class="  absolute  opacity-0 invisible group-hover:opacity-100 group-hover:visible  p-6 w-52  shadow-normal space-y-4 [&>*]:block  text-zinc-700 bg-white  dark:text-white dark:bg-zinc-700 border-t-[3px]   border-orange-300 text-base rounded-2xl font-Dana-DemiBold tracking-normal child:transition-colors child-hover:text-orange-300" >               
+                        <a href="#">قهوه ویژه</a>
+                        <a href="#">ویژه در سطح جهانی</a>
+                        <a href="#">قهوه درجه یک</a>
+                        <a href="#">ترکیبات تجاری</a>                        
+                        <a href="#">کپسول قهوه</a>                    
+                        <a href="#">قهوه زینو برزیلی</a>               
+                    </div>
+                </li>
+  
+                <li>
+                    <a href="#">دیکشنری</a>
+                </li>
+  
+                <li>
+                    <a href="#">بلاگ</a>
+                </li>
+  
+                <li>
+                    <a href="#" >درباره ما</a> 
+                </li>
+  
+                <li>
+                    <a href="#">تماس با ما</a>
+                </li>
+  
+            </ul>
+  
+        </nav>
+        
+        <!-- card Theme and ligin link -->
+        <div class="flex text-lg    text-orange-200  ">
+                <div class="flex items-center gap-x-5">
+                    <!-- cart -->
+                    <div class="relative group">
+  
+                        <!-- cart icon hover -->
+                            <!-- ایکون سبد خرید هاور -->
+                        <div  class="py-3 cursor-pointer ">
+                            <svg class="w-8 h-8">
+                                    <use xlink:href="#shopping-cart"></use>
+                            </svg>
+                        </div>
+  
+                        <!-- cart icon box // -->
+                            <!-- سبد خرید هاور -->
+                        <div class="absolute  opacity-0 invisible  left-0  opacity-invisble group-hover:opacity-100 group-hover:visible w-[400px] bg-white py-5 dark:bg-zinc-700 border-t-[3px]   border-orange-300 shadow-normal rounded-2xl transition-all p-5 delay-75"> 
+                            
+                            <!-- cart header -->
+                            <div class="flex items-center justify-between font-Dana-Medium text-xs">
+                                <span class="text-gray-300 ">1 مورد</span>
+                                <a href="#" class="text-orange-300 tracking-tighter flex items-center font-Dana-Medium ">
+                                    مشاهده سبد خرید <svg class="w-5 h-5">
+                                        <use xlink:href="#chevron-left-mini" ></use>
+                                    </svg>
+                                </a>
+                            </div>
+  
+                            <!-- cart body -->
+                                <div class="flex flex-col  border-b border-gray-300 dark:border-white/10 divide-y divide-gray-100 dark:divide-white/10 child:py-5">
+                                <!--  product -->
+                                <div class="flex gap-x-2.5 pb-1 ">
+                                    <!-- imgs -->
+                                    <img src="assets/images/products/p2.png" alt="product" class="w-30 h-30">
+                                    <!-- text -->
+                                    <div class="flex flex-col  justify-between">
+                                        <h4 class="font-Dana-Medium text-base text-zinc-700 dark:text-white line-height-[24px] line-clamp-2">قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</h4>
+                                        <div class=" ">
+                                    
+                                        <p class="font-Dana font-medium inline-block  text-teal-600 text-xs">14.500 تومان تخفیف</p>
+                                        <div class="flex items-center font-Dana-Medium  text-lg font-medium text-zinc-700  dark:text-white">
+                                            175,000 
+                                            <p class="font-Dana  text-sm mr-1"> تومان</p>
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div> 
+                                <div class="flex gap-x-2.5 pb-1 hidden">
+                                    <!-- imgs -->
+                                    <img src="images/products/p2.png" alt="product" class="w-30 h-30">
+                                    <!-- text -->
+                                    <div class="flex flex-col  justify-between">
+                                        <h4 class="font-Dana-Medium text-base text-zinc-700 dark:text-white line-height-[24px] line-clamp-2">قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</h4>
+                                        <div class=" ">
+                                    
+                                        <p class="font-Dana  text-teal-600 text-xs">14.500 تومان تخفیف</p>
+                                        <div class="flex items-center font-Dana-Medium text-xl font-medium text-zinc-700  dark:text-white">
+                                            175,000 
+                                            <p class="font-Dana  text-sm mr-1"> تومان</p>
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div> 
+                                
+                                </div>   
+                            
+                            <!-- cart footer -->
+                            <div class="flex flex-row justify-between mt-5 ">
+                                <!-- price -->
+                                <div class="flex flex-col justify-center" > 
+                                <p class=" font-Dana text-xs text-gray-300 dark:text-white  tracking-tightest">مبلغ قابل پرداخت</p>
+                                <p class=" text-zinc-700 dark:text-white">350,000 تومان</p>
+                                </div>
+                                <div class="w-36 h-14 bg-teal-600 text-white   text-xl font-Dana  rounded-2xl flex items-center justify-center" >ثبت سفارش </div>
+                            </div>
+  
+                        </div>
+  
+                    </div>
+                    <!--moon-->
+                    <div class="cursor-pointer toggle-theme-btn">
+                        <svg class="w-8.5 h-8.5 inline-block dark:hidden ">
+                            <use xlink:href="#moon"></use>
+                        </svg>
+  
+                        <svg class="w-8.5 h-8.5  hidden  dark:inline-block ">
+                            <use xlink:href="#sun"></use>
+                        </svg>
+                    </div>
+  
+                </div>
+                <span class="w-px h-14 bg-white/20 mr-2 ml-2  xl:mr-10 xl:ml-11 "></span>
+  
+                <a href="#" class="flex items-center xl:gap-2.5 tracking-tightest text-xl font-normal ">
+                    <svg class="w-8.5 h-8.5 rotate-180 ">
+                        <use xlink:href="#arrow-left-end-on-rectangle"></use>
+                    </svg>
+  
+                    <p class="hidden xl:block">ورود | ثبت‌نام</p>
+                </a>
+        </div>
+        
+    </div>
+  </header>
+  

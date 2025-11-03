@@ -6,4 +6,3 @@ import { Component } from '@angular/core';
   templateUrl: './blogs.component.html',
 })
 export class BlogsComponent {}
-

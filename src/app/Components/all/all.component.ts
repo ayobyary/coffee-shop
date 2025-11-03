@@ -9,11 +9,14 @@ import { NewProductsComponent } from '../new-products/new-products.component';
 import { BlogsComponent } from '../blogs/blogs.component';
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
+import { ContactUsComponent } from "../contact-us/contact-us.component";
+import { ServicesComponent } from "../services/services.component";
+import { FooterComponent } from "../footer/footer.component";
 Swiper.use([Navigation]);
 @Component({
   selector: 'app-all',
   standalone: true,
-  imports: [HeaderComponent, HeroComponent, CategoryBannerComponent, ProductsCategoryComponent, BestSellComponent, CoffeeClubComponent, NewProductsComponent, BlogsComponent],
+  imports: [HeaderComponent, HeroComponent, CategoryBannerComponent, ProductsCategoryComponent, BestSellComponent, CoffeeClubComponent, NewProductsComponent, BlogsComponent, ContactUsComponent, ServicesComponent, FooterComponent],
   templateUrl: './all.component.html',
   styleUrl: './all.component.css'
 })

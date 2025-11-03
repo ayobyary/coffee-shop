@@ -6,13 +6,14 @@ import { ProductsCategoryComponent } from '../products-category/products-categor
 import { BestSellComponent } from '../best-sell/best-sell.component';
 import { CoffeeClubComponent } from '../coffee-club/coffee-club.component';
 import { NewProductsComponent } from '../new-products/new-products.component';
+import { BlogsComponent } from '../blogs/blogs.component';
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 Swiper.use([Navigation]);
 @Component({
   selector: 'app-all',
   standalone: true,
-  imports: [HeaderComponent, HeroComponent, CategoryBannerComponent, ProductsCategoryComponent, BestSellComponent, CoffeeClubComponent, NewProductsComponent],
+  imports: [HeaderComponent, HeroComponent, CategoryBannerComponent, ProductsCategoryComponent, BestSellComponent, CoffeeClubComponent, NewProductsComponent, BlogsComponent],
   templateUrl: './all.component.html',
   styleUrl: './all.component.css'
 })

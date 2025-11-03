@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
+import { HeroComponent } from '../hero/hero.component';
 import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 Swiper.use([Navigation]);
 @Component({
   selector: 'app-all',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, HeroComponent],
   templateUrl: './all.component.html',
   styleUrl: './all.component.css'
 })

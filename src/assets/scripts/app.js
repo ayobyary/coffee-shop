@@ -62,40 +62,191 @@ const navLeftOpen    = document.querySelector(".nav-left-open");
 
 
 
-// open-nav-icon-left-mobile
-navIcon.addEventListener("click", (e) => {
-    nav.classList.toggle("right-0");
-    overlay.classList.toggle("hidden");
-})
+// Helper function to get elements
+function getNavElements() {
+    return {
+        navIcon: document.querySelector(".nav-icon"),
+        nav: document.querySelector(".nav"),
+        navClose: document.querySelector(".nav-close"),
+        submenuOpenBtn: document.querySelector(".submenu-open-btn"),
+        submenu: document.querySelector(".submenu"),
+        closeShopingNavLeft: document.querySelector(".close-shoping-nav-left"),
+        overlay: document.querySelector(".overlay"),
+        navLeft: document.querySelector(".nav-left"),
+        navLeftOpen: document.querySelector(".nav-left-open")
+    };
+}
 
-// close-nav-icon-left-mobile
-navClose.addEventListener("click", (e) => {
-nav.classList.replace( "right-0" ,"-right-64" );
-overlay.classList.toggle("hidden");
-})
+// Helper function to open/close nav using transform
+function openNav() {
+    const elements = getNavElements();
+    if (elements.nav) {
+        elements.nav.style.transform = "translateX(0)";
+    }
+    if (elements.overlay) {
+        elements.overlay.classList.remove("hidden");
+    }
+}
 
-// open-nav-left-mobile
-navLeftOpen.addEventListener("click", (e) => {
-    navLeft.classList.toggle("left-0");
-    overlay.classList.toggle("hidden");
-})
+function closeNav() {
+    const elements = getNavElements();
+    if (elements.nav) {
+        elements.nav.style.transform = "translateX(100%)";
+    }
+    if (elements.overlay) {
+        elements.overlay.classList.add("hidden");
+    }
+}
+
+// Helper function to open/close navLeft using transform
+function openNavLeft() {
+    const elements = getNavElements();
+    if (elements.navLeft) {
+        elements.navLeft.style.transform = "translateX(0)";
+    }
+    if (elements.overlay) {
+        elements.overlay.classList.remove("hidden");
+    }
+}
+
+function closeNavLeft() {
+    const elements = getNavElements();
+    if (elements.navLeft) {
+        elements.navLeft.style.transform = "translateX(-100%)";
+    }
+    if (elements.overlay) {
+        elements.overlay.classList.add("hidden");
+    }
+}
+
+// Use MutationObserver to watch for Angular components
+let setupTimeout;
+const observer = new MutationObserver(() => {
+    // Debounce to avoid too many calls
+    clearTimeout(setupTimeout);
+    setupTimeout = setTimeout(() => {
+        setupEventListeners();
+    }, 100);
+});
+
+// Start observing when body is available
+if (document.body) {
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+} else {
+    document.addEventListener('DOMContentLoaded', () => {
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+// Function to setup event listeners
+function setupEventListeners() {
+    const elements = getNavElements();
+    
+    // Remove old listeners to prevent duplicates
+    const newNavIcon = elements.navIcon;
+    const newNavClose = elements.navClose;
+    const newNavLeftOpen = elements.navLeftOpen;
+    const newCloseShopingNavLeft = elements.closeShopingNavLeft;
+    const newOverlay = elements.overlay;
+    
+    // Setup nav-icon click
+    if (newNavIcon && !newNavIcon.hasAttribute('data-listener-attached')) {
+        newNavIcon.setAttribute('data-listener-attached', 'true');
+        newNavIcon.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openNav();
+        });
+    }
+    
+    // Setup nav-close click
+    if (newNavClose && !newNavClose.hasAttribute('data-listener-attached')) {
+        newNavClose.setAttribute('data-listener-attached', 'true');
+        newNavClose.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeNav();
+        });
+    }
+    
+    // Setup nav-left-open click
+    if (newNavLeftOpen && !newNavLeftOpen.hasAttribute('data-listener-attached')) {
+        newNavLeftOpen.setAttribute('data-listener-attached', 'true');
+        newNavLeftOpen.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openNavLeft();
+        });
+    }
+    
+    // Setup close-shoping-nav-left click
+    if (newCloseShopingNavLeft && !newCloseShopingNavLeft.hasAttribute('data-listener-attached')) {
+        newCloseShopingNavLeft.setAttribute('data-listener-attached', 'true');
+        newCloseShopingNavLeft.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeNavLeft();
+        });
+    }
+    
+    // Setup overlay click
+    if (newOverlay && !newOverlay.hasAttribute('data-listener-attached')) {
+        newOverlay.setAttribute('data-listener-attached', 'true');
+        newOverlay.addEventListener("click", (e) => {
+            if (!newOverlay.classList.contains("hidden")) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeNav();
+                closeNavLeft();
+            }
+        });
+    }
+}
+
+// Try to setup listeners immediately
+setupEventListeners();
+
+// Also try after DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupEventListeners);
+} else {
+    setupEventListeners();
+}
+
+// Also try after delays to ensure Angular has rendered
+setTimeout(setupEventListeners, 100);
+setTimeout(setupEventListeners, 500);
+setTimeout(setupEventListeners, 1000);
 
 
-// close-nav-left-mobile
-closeShopingNavLeft.addEventListener("click", (e) => {
-    navLeft.classList.toggle("left-0");
-    overlay.classList.toggle("hidden");
-})
 
-
-
-// submenu-open-btn 
-submenuOpenBtn.addEventListener("click", (e) => {
-    e.currentTarget.parentElement.classList.toggle("text-orange-300");
-    submenuOpenBtn.classList.toggle("submenu-open");
-    submenuOpenBtn.classList.toggle("rotate-180");
-    submenu.classList.toggle("submenu-open");
-   
+// submenu-open-btn using event delegation
+document.addEventListener("click", (e) => {
+    let target = e.target;
+    
+    // Handle SVG clicks
+    if (target.tagName === "use" || target.tagName === "path") {
+        target = target.closest("svg");
+    }
+    
+    const submenuOpenBtn = target.closest(".submenu-open-btn") || (target.classList && target.classList.contains("submenu-open-btn") ? target : null);
+    if (submenuOpenBtn) {
+        e.preventDefault();
+        const elements = getNavElements();
+        const submenu = elements.submenu;
+        if (submenu) {
+            submenuOpenBtn.parentElement.classList.toggle("text-orange-300");
+            submenuOpenBtn.classList.toggle("submenu-open");
+            submenuOpenBtn.classList.toggle("rotate-180");
+            submenu.classList.toggle("submenu-open");
+        }
+    }
 });
 
 
@@ -105,19 +256,19 @@ submenuOpenBtn.addEventListener("click", (e) => {
 
 ////////////////////////////////////////////////////////////
 
-
-
-overlay.addEventListener("click", (e) => {
-    // بستن منوی سمت راست اگر باز باشد
-    if (nav.classList.contains("right-0")) {
-        nav.classList.replace("right-0", "-right-64");
-    }
+// Overlay click handler using event delegation
+document.addEventListener("click", (e) => {
+    const target = e.target;
+    const overlay = target.closest(".overlay") || (target.classList && target.classList.contains("overlay") ? target : null);
     
-    // بستن منوی سمت چپ اگر باز باشد
-    if (navLeft.classList.contains("left-0")) {
-        navLeft.classList.remove("left-0");
+    // اگر روی overlay کلیک شد و overlay مخفی نیست (یعنی sidebar‌ها باز هستند)
+    if (overlay && !overlay.classList.contains("hidden")) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        // اگر overlay نمایش داده می‌شود، یعنی یکی از sidebar‌ها باز است
+        // پس همه sidebar‌ها را می‌بندیم
+        closeNav();
+        closeNavLeft();
     }
-    
-    // مخفی کردن overlay
-    overlay.classList.add("hidden");
-})
+});

@@ -1,30 +1,33 @@
 
 <!-- header mobile -->
-<div class="flex md:hidden justify-between items-center w-full h-16 bg-white dark:bg-zinc-700 px-4 py-3 ">
+<div class="flex md:hidden justify-between items-center w-full min-w-[300px] h-16 bg-white dark:bg-zinc-700 px-3 sm:px-4 py-3">
+
+    <!-- overlay -->
+    <div #overlayElement class="overlay hidden fixed inset-0 w-full h-full bg-black/40 z-10" (click)="onOverlayClick()"></div>
 
     <!-- nav-bar-mobile -->
-    <div class="nav fixed z-20 w-64 top-0 -right-64 left-0 bottom-0 min-h-screen  bg-white dark:bg-zinc-700 px-4 pt-3 overflow-y-auto  transition-all ">
+    <div #navElement class="nav fixed z-20 w-[70vw] max-w-[240px] sm:w-64 top-0 right-0 bottom-0 min-h-screen bg-white dark:bg-zinc-700 px-2.5 sm:px-3 md:px-4 pt-3 overflow-y-auto transition-transform duration-300 ease-in-out" style="transform: translateX(100%);">
   
         <!-- header-mobile -->
         <div class="flex flex-row justify-between items-center border-b border-gray-100 dark:border-b-white/10 pb-5 mb-6">
-            <div class="flex flex-row items-center gap-3.5">
+            <div class="flex flex-row items-center gap-2.5 sm:gap-3.5">
             <!-- logo-icon -->
-            <svg class="w-[41px] h-10 text-orange-300 dark:text-white">
+            <svg class="w-8 sm:w-[41px] h-8 sm:h-10 text-orange-300 dark:text-white shrink-0">
                 <use xlink:href="#logo"></use>
             </svg>
-            <svg class="w-[100px] h-10 text-orange-300 dark:text-white">
+            <svg class="w-20 sm:w-[100px] h-8 sm:h-10 text-orange-300 dark:text-white shrink-0">
                 <use xlink:href="#logo-type"></use>
             </svg>
             </div>
-            <svg class="nav-close w-5 h-5 text-zinc-600 dark:text-white">
+            <svg class="nav-close w-4 h-4 sm:w-5 sm:h-5 text-zinc-600 dark:text-white shrink-0 cursor-pointer" (click)="closeNav()">
                 <use xlink:href="#x-mark-mini"></use>
             </svg>
         </div>
   
         <!-- home -->
-        <div class="flex flex-row justify-between  text-zinc-700 dark:text-white gap-x-2.5 p-2.5 bg-orange-200/20 rounded-md mb-4  hover:text-orange-300">
-            <a href="#" class="flex flex-row items-center gap-x-2  justify-center">
-                <svg class="w-5 h-5 ">
+        <div class="flex flex-row justify-between text-zinc-700 dark:text-white gap-x-2 sm:gap-x-2.5 p-2 sm:p-2.5 bg-orange-200/20 rounded-md mb-4 hover:text-orange-300">
+            <a href="#" class="flex flex-row items-center gap-x-1.5 sm:gap-x-2 justify-center text-sm sm:text-base">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                     <use xlink:href="#home"></use>
                 </svg>
                 صفحه اصلی
@@ -32,13 +35,13 @@
         </div>                  
   
         <!-- nav-meno -->
-        <ul class="child:pr-2.5 space-y-6 text-zinc-600 dark:text-white ">   
+        <ul class="child:pr-2 sm:child:pr-2.5 space-y-4 sm:space-y-6 text-zinc-600 dark:text-white">   
             <li class=" " >
                 <!-- باتن زیر منو فروشگاه -->
                 <div class="flex items-center justify-between ">
                     <!-- shopping-bag -->
-                    <a href="#" class="flex  items-center gap-x-2">
-                        <svg class="w-5 h-5">
+                    <a href="#" class="flex items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                             <use xlink:href="#shopping-bag"></use>
                         </svg>
                         فروشگاه  
@@ -46,7 +49,7 @@
   
                     <span class="submenu-open-btn">
                     <!-- chevron-down -->   
-                        <svg class=" w-4 h-4 ">
+                        <svg class="w-4 h-4 shrink-0">
                             <use xlink:href="#chevron-down-mini"></use>
                         </svg>
                     </span>
@@ -73,8 +76,8 @@
             
             <!-- dictionary -->
             <li >
-                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-2  hover:text-orange-300">
-                    <svg class="w-5 h-5 ">
+                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#chat-bubble-left-ellipsis"></use>
                     </svg>
                     دیکشنری
@@ -82,30 +85,30 @@
             </li>
   
             <!-- about -->
-            <li >
+            <li>
                 <!-- about -->
-                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-2  hover:text-orange-300">
-                    <svg class="w-5 h-5 ">
+                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#briefcase"></use>
                     </svg>
                     درباره ما
                 </a>    
             </li>
             <!-- blog -->
-            <li >
+            <li>
                 <!-- blog -->
-                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-2  hover:text-orange-300">
-                    <svg class="w-5 h-5 ">
+                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#document-text"></use>
                     </svg>
                     بلاگ
                 </a>
             </li>
             <!-- contact -->
-            <li >
+            <li>
                 <!-- contact -->
-                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-2  hover:text-orange-300">
-                    <svg class="w-5 h-5 ">
+                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#phone-arrow-up-right"></use>
                     </svg>
                     تماس با ما
@@ -115,32 +118,32 @@
         </ul>
   
         <!-- footer -->
-        <div class="flex flex-col items-start justify-between  border-t border-gray-100 dark:border-t-white/10 pt-8 pr-2.5 mt-6 gap-y-6">
+        <div class="flex flex-col items-start justify-between border-t border-gray-100 dark:border-t-white/10 pt-6 sm:pt-8 pr-2 sm:pr-2.5 mt-4 sm:mt-6 gap-y-4 sm:gap-y-6">
             
-            <a href="#" class="text-orange-300 flex items-center  gap-x-2 font-Dana font-normal text-base">
-                <svg class="w-5 h-5 text-orange-300 rotate-180">
+            <a href="#" class="text-orange-300 flex items-center gap-x-1.5 sm:gap-x-2 font-Dana font-normal text-sm sm:text-base">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 text-orange-300 rotate-180 shrink-0">
                     <use xlink:href="#arrow-left-end-on-rectangle"></use>
                 </svg>
                 ورود | ثبت‌نام
             </a>
-            <div class="text-orange-300 child:gap-x-2 font-Dana font-normal text-base">
+            <div class="text-orange-300 child:gap-x-1.5 sm:child:gap-x-2 font-Dana font-normal text-sm sm:text-base">
                 <!--dark-mood-btn-->
-                <div class="cursor-pointer toggle-theme-btn  flex items-center   dark:hidden">
-                        <svg class="w-5 h-5  ">
+                <div class="cursor-pointer toggle-theme-btn flex items-center dark:hidden">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#moon"></use>
                     </svg>
                     تم تیره
                 </div>
                 <!--light-mood-btn-->
-                <div class="cursor-pointer toggle-theme-btn  dark:flex items-center   hidden   ">
-                    <svg class="w-5 h-5 ">
+                <div class="cursor-pointer toggle-theme-btn dark:flex items-center hidden">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#sun"></use>
                     </svg>
                     تم روشن     
                 </div>
             </div>
-            <a href="#" class="text-orange-300 flex items-center  gap-x-2 font-Dana font-normal text-base">
-                <svg class="w-5 h-5 ">
+            <a href="#" class="text-orange-300 flex items-center gap-x-1.5 sm:gap-x-2 font-Dana font-normal text-sm sm:text-base">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                     <use xlink:href="#shopping-cart"></use>
                 </svg>
                 سبد خرید
@@ -150,15 +153,15 @@
     </div>
   
     <!-- nav-shoping-bag     -->
-    <div class="nav-left fixed z-20 w-64 top-0 -left-64  bottom-0 min-h-screen  bg-white dark:bg-zinc-700 px-4 pt-[22px] overflow-y-auto  transition-all ">
+    <div #navLeftElement class="nav-left fixed z-20 w-[70vw] max-w-[240px] sm:w-64 top-0 left-0 bottom-0 min-h-screen bg-white dark:bg-zinc-700 px-2.5 sm:px-3 md:px-4 pt-4 sm:pt-[22px] overflow-y-auto transition-transform duration-300 ease-in-out" style="transform: translateX(-100%);">
   
         <!-- cart header -->
         <div class="flex flex-col justify-between h-full">
         <!-- cart header -->
         <div>
             <!-- cart header -->
-            <div class="flex items-center justify-between font-Dana-Medium text-base mb-[21px] border-b border-gray-300 dark:border-white/10 pb-5">
-                <svg class="close-shoping-nav-left w-5 h-5">
+            <div class="flex items-center justify-between font-Dana-Medium text-sm sm:text-base mb-4 sm:mb-[21px] border-b border-gray-300 dark:border-white/10 pb-3 sm:pb-5">
+                <svg class="close-shoping-nav-left w-4 h-4 sm:w-5 sm:h-5 shrink-0 cursor-pointer" (click)="closeNavLeft()">
                     <use xlink:href="#x-mark-mini"></use>
                 </svg>
                 <a href="#" class="text-zinc-700 dark:text-white font-Dana-Medium ">
@@ -169,38 +172,34 @@
             <div class="flex flex-col divide-y divide-gray-100 dark:divide-white/10 child:pb-5 last:border-b last:border-gray-100 dark:border-white/10 child:py-5 ">
                 
                 <!--  product -->
-                <div class="flex gap-x-1 pb-1 ">
+                <div class="flex gap-x-2 sm:gap-x-3 pb-2 sm:pb-3">
                     <!-- imgs -->
-                    <img src="images/products/p2.png" alt="product" class="w-[90px] h-[90px]">
+                    <img src="../../../assets/images/products/p2.png" alt="product" class="w-16 h-16 sm:w-[90px] sm:h-[90px] shrink-0 rounded-lg object-cover">
                     <!-- text -->
-                    <div class="flex flex-col  justify-between">
-                        <P class="font-Dana-Medium text-sm text-zinc-700 dark:text-white line-height-[20px] ">قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</P>
-                        <div class=" ">
-                    
-                        <p class="font-Dana font-medium inline-block  text-teal-600 dark:text-emerald-500 text-xs line-height-[24px] tracking-tighter">14.500 تومان تخفیف</p>
-                        <div class="flex items-center font-Dana-DemiBold  text-base font-semibold text-zinc-700  dark:text-white">
-                            175,000 
-                            <p class="font-Dana font-normal  text-xs mr-1"> تومان</p>
+                    <div class="flex flex-col justify-between min-w-0 flex-1">
+                        <P class="font-Dana-Medium text-xs sm:text-sm text-zinc-700 dark:text-white line-clamp-2">قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</P>
+                        <div>
+                            <p class="font-Dana font-medium inline-block text-teal-600 dark:text-emerald-500 text-[10px] sm:text-xs tracking-tighter">14.500 تومان تخفیف</p>
+                            <div class="flex items-center font-Dana-DemiBold text-sm sm:text-base font-semibold text-zinc-700 dark:text-white">
+                                175,000 
+                                <p class="font-Dana font-normal text-[10px] sm:text-xs mr-1"> تومان</p>
+                            </div>
                         </div>
-                        </div>
-                    
                     </div>
                 </div> 
-                <div class="flex gap-x-1  ">
+                <div class="flex gap-x-2 sm:gap-x-3 pb-2 sm:pb-3">
                     <!-- imgs -->
-                    <img src="images/products/p1.png" alt="product" class="w-[90px] h-[90px]">
+                    <img src="../../../assets/images/products/p1.png" alt="product" class="w-16 h-16 sm:w-[90px] sm:h-[90px] shrink-0 rounded-lg object-cover">
                     <!-- text -->
-                    <div class="flex flex-col  justify-between">
-                        <P class="font-Dana-Medium text-sm text-zinc-700 dark:text-white line-height-[20px] ">قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</P>
-                        <div class=" ">
-                    
-                        <p class="font-Dana font-medium inline-block  text-teal-600 dark:text-emerald-500 text-xs line-height-[24px] tracking-tighter">14.500 تومان تخفیف</p>
-                        <div class="flex items-center font-Dana-DemiBold  text-base font-semibold text-zinc-700  dark:text-white">
-                            175,000 
-                            <p class="font-Dana font-normal  text-xs mr-1"> تومان</p>
+                    <div class="flex flex-col justify-between min-w-0 flex-1">
+                        <P class="font-Dana-Medium text-xs sm:text-sm text-zinc-700 dark:text-white line-clamp-2">قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</P>
+                        <div>
+                            <p class="font-Dana font-medium inline-block text-teal-600 dark:text-emerald-500 text-[10px] sm:text-xs tracking-tighter">14.500 تومان تخفیف</p>
+                            <div class="flex items-center font-Dana-DemiBold text-sm sm:text-base font-semibold text-zinc-700 dark:text-white">
+                                175,000 
+                                <p class="font-Dana font-normal text-[10px] sm:text-xs mr-1"> تومان</p>
+                            </div>
                         </div>
-                        </div>
-                    
                     </div>
                 </div> 
                 
@@ -208,18 +207,16 @@
         </div>
         
         <!-- cart footer -->
-        <div class="flex flex-row  gap-x-4 mb-8">
-            <div class="w-28 h-11 bg-teal-600 dark:bg-emerald-500 text-white   text-base font-Dana font-normal rounded-xl flex items-center justify-center" >ثبت سفارش </div>
+        <div class="flex flex-row gap-x-2 sm:gap-x-4 mb-6 sm:mb-8">
+            <div class="min-w-[100px] sm:w-28 h-10 sm:h-11 bg-teal-600 dark:bg-emerald-500 text-white text-xs sm:text-base font-Dana font-normal rounded-xl flex items-center justify-center px-2 sm:px-0">ثبت سفارش</div>
             <!-- price -->
-                <div class="flex flex-col justify-center flex-1 " > 
-                <p class=" font-Dana text-xs font-medium line-height-[24px] text-gray-300 dark:text-white  tracking-tighter">مبلغ قابل پرداخت</p>
-                <div class="flex flex-row items-center gap-x-1  text-zinc-700">
-                    <p class=" dark:text-white inline-block ">350,000</p>
-                    <p class="font-Dana font-normal text-xs"> تومان</p>
+            <div class="flex flex-col justify-center flex-1 min-w-0"> 
+                <p class="font-Dana text-[10px] sm:text-xs font-medium text-gray-300 dark:text-white tracking-tighter">مبلغ قابل پرداخت</p>
+                <div class="flex flex-row items-center gap-x-1 text-zinc-700">
+                    <p class="dark:text-white inline-block text-sm sm:text-base">350,000</p>
+                    <p class="font-Dana font-normal text-[10px] sm:text-xs"> تومان</p>
                 </div>
-                
             </div>
-            
         </div>
         
         </div>
@@ -227,18 +224,18 @@
     </div>
   
     <!-- menu-icon -->
-    <div class="nav-icon">
-        <svg class="h-6 w-6 text-zinc-700 dark:text-white">
+    <div class="nav-icon cursor-pointer" (click)="openNav()">
+        <svg class="h-5 w-5 sm:h-6 sm:w-6 text-zinc-700 dark:text-white shrink-0 pointer-events-none">
             <use xlink:href="#bars-3"></use>
         </svg>
     </div>
   
     <!-- logo-icon -->
-    <svg class="w-[100px] h-10 text-orange-300 dark:text-white">
+    <svg class="w-20 sm:w-[100px] h-8 sm:h-10 text-orange-300 dark:text-white shrink-0">
     <use xlink:href="#logo-type"></use>
     </svg>
     <!-- cart-shop-icon -->
-    <svg class="nav-left-open h-6 w-6 text-zinc-700 dark:text-white">
+    <svg class="nav-left-open h-5 w-5 sm:h-6 sm:w-6 text-zinc-700 dark:text-white shrink-0 cursor-pointer" (click)="openNavLeft()">
     <use xlink:href="#shopping-cart"></use>
     </svg>
     

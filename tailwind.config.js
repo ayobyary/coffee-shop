@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  // Tailwind v4: no content needed; keep config minimal
   theme: {
     extend: {},
   },

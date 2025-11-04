@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { HeroComponent } from '../hero/hero.component';
 import { CategoryBannerComponent } from '../category-banner/category-banner.component';
@@ -12,11 +13,12 @@ import { Navigation } from 'swiper/modules';
 import { ContactUsComponent } from "../contact-us/contact-us.component";
 import { ServicesComponent } from "../services/services.component";
 import { FooterComponent } from "../footer/footer.component";
+import { HomeComponent } from "../../Navbar page/home/home.component";
 Swiper.use([Navigation]);
 @Component({
   selector: 'app-all',
   standalone: true,
-  imports: [HeaderComponent, HeroComponent, CategoryBannerComponent, ProductsCategoryComponent, BestSellComponent, CoffeeClubComponent, NewProductsComponent, BlogsComponent, ContactUsComponent, ServicesComponent, FooterComponent],
+  imports: [HeaderComponent, HeroComponent, CategoryBannerComponent, ProductsCategoryComponent, BestSellComponent, CoffeeClubComponent, NewProductsComponent, BlogsComponent, ContactUsComponent, ServicesComponent, FooterComponent, HomeComponent, RouterModule],
   templateUrl: './all.component.html',
   styleUrl: './all.component.css'
 })

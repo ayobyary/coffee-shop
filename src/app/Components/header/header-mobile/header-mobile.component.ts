@@ -77,6 +77,26 @@ export class HeaderMobileComponent implements AfterViewInit {
     this.closeNavLeft();
   }
 
+  toggleSubmenu(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const buttonElement = (event.currentTarget as HTMLElement) || (event.target as HTMLElement);
+    if (!buttonElement) return;
+
+    const headerRow = buttonElement.closest('div');
+    const submenuElement = headerRow?.nextElementSibling as HTMLElement | null;
+
+    if (headerRow) {
+      headerRow.classList.toggle('text-orange-300');
+    }
+    buttonElement.classList.toggle('rotate-180');
+
+    if (submenuElement) {
+      submenuElement.classList.toggle('submenu-open');
+    }
+  }
+
   private setupEventListeners(): void {
     // Setup overlay click if it exists
     const overlay = this.overlayElement?.nativeElement;

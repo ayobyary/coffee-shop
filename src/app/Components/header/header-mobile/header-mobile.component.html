@@ -47,7 +47,7 @@
                         فروشگاه  
                     </a>
   
-                    <span class="submenu-open-btn">
+                    <span class="submenu-open-btn" (click)="toggleSubmenu($event)">
                     <!-- chevron-down -->   
                         <svg class="w-4 h-4 shrink-0">
                             <use xlink:href="#chevron-down-mini"></use>
@@ -57,7 +57,7 @@
                 </div>
   
                 <!-- زیر منو -->
-                <div class="submenu  " >
+                <div class="submenu  ">
                     <a href="#">قهوه ویژه</a>
                 
                     <a href="#" class="submenu-item--active" >ویژه در سطح جهانی</a>

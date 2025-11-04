@@ -1,9 +1,10 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header-mobile',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './header-mobile.component.html',
   styleUrl: './header-mobile.component.css'
 })

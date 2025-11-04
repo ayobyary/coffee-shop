@@ -20,13 +20,13 @@
   
   
                 <li class="font-Dana-Medium text-xl font-normal text-orange-200 ">
-                    <a href="#" >صفحه اصلی</a>
+                    <a [routerLink]="'/home'">صفحه اصلی</a>
                 </li>
   
                 <!-- Has sub meno -->
                 <!--  فروشگاه با زیر منو -->
                 <li  class="relative group ">
-                    <a href="#" >فروشگاه</a>
+                    <a [routerLink]="'/shope'">فروشگاه</a>
   
                     <!-- sub meno -->
                     <!-- زیر منو -->
@@ -41,19 +41,19 @@
                 </li>
   
                 <li>
-                    <a href="#">دیکشنری</a>
+                    <a [routerLink]="'/dicshitnary'">دیکشنری</a>
                 </li>
   
                 <li>
-                    <a href="#">بلاگ</a>
+                    <a [routerLink]="'/blog'">بلاگ</a>
                 </li>
   
                 <li>
-                    <a href="#" >درباره ما</a> 
+                    <a [routerLink]="'/about-us'" >درباره ما</a> 
                 </li>
   
                 <li>
-                    <a href="#">تماس با ما</a>
+                    <a [routerLink]="'/contact-us'">تماس با ما</a>
                 </li>
   
             </ul>

@@ -26,7 +26,7 @@
   
         <!-- home -->
         <div class="flex flex-row justify-between text-zinc-700 dark:text-white gap-x-2 sm:gap-x-2.5 p-2 sm:p-2.5 bg-orange-200/20 rounded-md mb-4 hover:text-orange-300">
-            <a href="#" class="flex flex-row items-center gap-x-1.5 sm:gap-x-2 justify-center text-sm sm:text-base">
+            <a [routerLink]="'/home'" class="flex flex-row items-center gap-x-1.5 sm:gap-x-2 justify-center text-sm sm:text-base" (click)="closeNav()">
                 <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                     <use xlink:href="#home"></use>
                 </svg>
@@ -40,7 +40,7 @@
                 <!-- باتن زیر منو فروشگاه -->
                 <div class="flex items-center justify-between ">
                     <!-- shopping-bag -->
-                    <a href="#" class="flex items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base">
+                    <a [routerLink]="'/shope'" class="flex items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base" (click)="closeNav()">
                         <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                             <use xlink:href="#shopping-bag"></use>
                         </svg>
@@ -76,7 +76,7 @@
             
             <!-- dictionary -->
             <li >
-                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300">
+                <a [routerLink]="'/dicshitnary'" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300" (click)="closeNav()">
                     <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#chat-bubble-left-ellipsis"></use>
                     </svg>
@@ -87,7 +87,7 @@
             <!-- about -->
             <li>
                 <!-- about -->
-                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300">
+                <a [routerLink]="'/about-us'" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300" (click)="closeNav()">
                     <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#briefcase"></use>
                     </svg>
@@ -97,7 +97,7 @@
             <!-- blog -->
             <li>
                 <!-- blog -->
-                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300">
+                <a [routerLink]="'/blog'" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300" (click)="closeNav()">
                     <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#document-text"></use>
                     </svg>
@@ -107,7 +107,7 @@
             <!-- contact -->
             <li>
                 <!-- contact -->
-                <a href="#" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300">
+                <a [routerLink]="'/contact-us'" class="text-zinc-700 dark:text-white flex flex-row items-center gap-x-1.5 sm:gap-x-2 text-sm sm:text-base hover:text-orange-300" (click)="closeNav()">
                     <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                         <use xlink:href="#phone-arrow-up-right"></use>
                     </svg>

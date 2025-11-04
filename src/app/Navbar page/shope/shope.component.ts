@@ -27,16 +27,7 @@ export class ShopeComponent {
 
   // Dataset
   categories = ['اسپرسو', 'قهوه ویژه', 'تجاری', 'کپسول', 'ترکیبی'];
-  products: Product[] = [
-    { id: 1, title: 'قهوه اسپرسو پریسکا 250 گرمی', price: 175000, image: 'assets/images/products/p2.png', category: 'اسپرسو', rating: 4.6, inStock: true, createdAt: 20241012 },
-    { id: 2, title: 'قهوه ویژه گواتمالا 250 گرمی', price: 245000, image: 'assets/images/products/p1.png', category: 'قهوه ویژه', rating: 4.8, inStock: true, createdAt: 20241018 },
-    { id: 3, title: 'کپسول قهوه عربیکا 10 عدد', price: 320000, image: 'assets/images/products/p3.png', category: 'کپسول', rating: 4.1, inStock: false, createdAt: 20240930 },
-    { id: 4, title: 'ترکیب تجاری کلاسیک 500 گرمی', price: 210000, image: 'assets/images/products/p4.png', category: 'تجاری', rating: 4.0, inStock: true, createdAt: 20241005 },
-    { id: 5, title: 'قهوه ترکیبی ویژه 250 گرمی', price: 195000, image: 'assets/images/products/p5.png', category: 'ترکیبی', rating: 4.3, inStock: true, createdAt: 20240918 },
-    { id: 6, title: 'قهوه ویژه اتیوپی 250 گرمی', price: 265000, image: 'assets/images/products/p6.png', category: 'قهوه ویژه', rating: 4.9, inStock: true, createdAt: 20241020 },
-    { id: 7, title: 'کپسول قهوه روبوستا 10 عدد', price: 285000, image: 'assets/images/products/p7.png', category: 'کپسول', rating: 3.9, inStock: true, createdAt: 20240815 },
-    { id: 8, title: 'قهوه اسپرسو ایتالیانو 250 گرمی', price: 185000, image: 'assets/images/products/p8.png', category: 'اسپرسو', rating: 4.2, inStock: true, createdAt: 20241001 },
-  ];
+  products: Product[] = [];
 
   get filteredProducts(): Product[] {
     let result = this.products.slice();
@@ -92,6 +83,27 @@ export class ShopeComponent {
 
   // Optional: sync URL (can be extended later)
   // In a future step, we could read/write query params here using Router
+
+  constructor() {
+    // build 40 mock items based on 8 base images/categories
+    const imgs = [1,2,3,4,5,6,7,8].map(i => `assets/images/products/p${i}.png`);
+    const cats = ['اسپرسو', 'قهوه ویژه', 'کپسول', 'تجاری', 'ترکیبی'];
+    for (let i = 1; i <= 40; i++) {
+      const img = imgs[(i-1) % imgs.length];
+      const cat = cats[(i-1) % cats.length];
+      const basePrice = 150000 + ((i % 8) * 10000);
+      this.products.push({
+        id: i,
+        title: `${cat} آیتم شماره ${i}`,
+        price: basePrice,
+        image: img,
+        category: cat,
+        rating: 3 + ((i % 5) * 0.4),
+        inStock: (i % 7) !== 0,
+        createdAt: 20240000 + (100 + i),
+      });
+    }
+  }
 }
 
 interface Product {

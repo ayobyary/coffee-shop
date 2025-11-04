@@ -1,1 +1,110 @@
-<p>shope works!</p>
+<section class="products my-8 md:my-20 md:pt-10 lg:pt-48 pt-8 mb-10">
+  <div class="container">
+  <!-- Toolbar -->
+  <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-6">
+    <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-4 w-full">
+      <input [(ngModel)]="query" (ngModelChange)="page=1" type="text" placeholder="جستجوی محصول..." class="w-full md:w-64 h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-sm outline-none border border-gray-200 dark:border-white/10"/>
+
+      <select [(ngModel)]="selectedCategory" (ngModelChange)="page=1" class="h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-sm border border-gray-200 dark:border-white/10">
+        <option [ngValue]="null">همه دسته‌ها</option>
+        <option *ngFor="let c of categories" [ngValue]="c">{{c}}</option>
+      </select>
+
+      <div class="flex items-center gap-2">
+        <input [(ngModel)]="priceMin" (ngModelChange)="page=1" type="number" min="0" placeholder="کمینه قیمت" class="w-28 h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-sm border border-gray-200 dark:border-white/10"/>
+        <span class="text-sm text-gray-400">تا</span>
+        <input [(ngModel)]="priceMax" (ngModelChange)="page=1" type="number" min="0" placeholder="بیشینه قیمت" class="w-28 h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-sm border border-gray-200 dark:border-white/10"/>
+      </div>
+
+      <label class="inline-flex items-center gap-2 text-sm">
+        <input type="checkbox" [(ngModel)]="onlyInStock" (change)="page=1"/>
+        فقط موجود
+      </label>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <select [(ngModel)]="sortBy" class="h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-sm border border-gray-200 dark:border-white/10">
+        <option value="newest">جدیدترین</option>
+        <option value="priceAsc">قیمت صعودی</option>
+        <option value="priceDesc">قیمت نزولی</option>
+        <option value="popular">محبوب‌ترین</option>
+      </select>
+
+      <select [(ngModel)]="pageSize" (ngModelChange)="page=1" class="h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-sm border border-gray-200 dark:border-white/10">
+        <option [ngValue]="12">12</option>
+        <option [ngValue]="24">24</option>
+        <option [ngValue]="48">48</option>
+      </select>
+
+      <div class="flex items-center gap-1 text-sm">
+        <button class="px-2 py-1 rounded-md" [class.bg-orange-200]="view==='grid'" (click)="view='grid'">شبکه‌ای</button>
+        <button class="px-2 py-1 rounded-md" [class.bg-orange-200]="view==='list'" (click)="view='list'">لیستی</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="flex items-center justify-between text-sm text-gray-500 dark:text-white/60 mb-4">
+    <span>نتیجه: {{total}} مورد</span>
+    <span>صفحه {{page}} از {{totalPages}}</span>
+  </div>
+
+  <!-- Empty state / skeleton -->
+  <div *ngIf="total===0" class="text-center py-16 text-gray-500 dark:text-white/60">
+    موردی یافت نشد. فیلترها را تغییر دهید.
+    <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div *ngFor="let s of [1,2,3,4,5,6,7,8]" class="animate-pulse bg-white dark:bg-zinc-700 rounded-xl border border-gray-100 dark:border-white/10 h-56"></div>
+    </div>
+  </div>
+
+  <!-- Grid/List with existing card style -->
+  <div *ngIf="total>0" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5">
+    <div *ngFor="let p of pageItems" class="p-2 mb-2 md:p-5 bg-white dark:bg-zinc-700 shadow-normal rounded-2xl">
+      <div class="relative mb-5 ">
+        <img class="w-32 md:w-auto mx-auto" [src]="p.image" [alt]="p.title">
+        <span class="hidden absolute right-1.5 top-1.5 block h-5 md:h-[30px] font-Dana-DemiBold bg-orange-300  text-white dark:text-zinc-700 px-2.5 md:px-3.5 rounded-full text-xs/[24px] md:text-base/[34px] ">ویژه</span>
+      </div>
+      <h5 class="font-Dana-Medium text-sm lg:text-xl text-zinc-700 dark:text-white line-clamp-2 ">{{p.title}}</h5>
+      <div class="flex gap-x-2 md:gap-x-2.5 mt-1.5 md:mt-2.5 ">
+        <div class=" text-teal-600 dark:text-emerald-500 flex flex-row justify-center items-center">
+          <span class="font-Dana-DemiBold  text-base md:text-xl">{{p.price | number}}</span>
+          <span class=" text-xs md:text-sm tracking-tight">تومان</span>
+        </div>
+        <div class="offer">
+          <span class=" text-xs lg:text-xl">{{p.price | number}}</span>
+          <span class="hidden lg:inline w-lg:text-sm text-xs tracking-tight">تومان</span>
+        </div>
+      </div>
+      <div class="flex justify-between">
+        <div class="flex gap-3 items-center text-gray-400">
+          <span class="flex-center size-[26px] md:size-9  bg-gray-100  hover:bg-teal-600 dark:bg-zinc-800 dark:hover:bg-emerald-500  hover:text-white  rounded-full cursor-pointer transition-all" (click)="p.inStock && addToCart(p)" [class.opacity-50]="!p.inStock">
+            <svg class="size-4 md:w-[22px] md:h-[22px] ">
+              <use xlink:href="#shopping-cart"></use>
+            </svg>
+          </span>
+          <span class="   hover:text-teal-600 dark:hover:text-emerald-600  rounded-full cursor-pointer transition-all">
+            <svg class="size-4 md:size-6 ">
+              <use xlink:href="#arrows-pointing-out"></use>
+            </svg>
+          </span>
+        </div>
+        <div class="child:size-4 child:lg:size-6 flex flex-row-reverse  items-center justify-between" >
+          <svg *ngFor="let s of [1,2,3,4,5]; let idx = index" [ngClass]="{ 'text-yellow-500': (p.rating||0) >= (idx+1), 'text-gray-300': (p.rating||0) < (idx+1) }">
+            <use  xlink:href="#star"></use>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div *ngIf="totalPages>1" class="flex items-center justify-center gap-2 mt-6">
+    <button class="px-3 h-9 rounded-md bg-gray-100 dark:bg-white/10" (click)="goToPage(page-1)" [disabled]="page===1">قبلی</button>
+    <ng-container *ngFor="let i of [].constructor(totalPages); let idx = index">
+      <button class="px-3 h-9 rounded-md" [class.bg-orange-200]="(idx+1)===page" (click)="goToPage(idx+1)">{{idx+1}}</button>
+    </ng-container>
+    <button class="px-3 h-9 rounded-md bg-gray-100 dark:bg-white/10" (click)="goToPage(page+1)" [disabled]="page===totalPages">بعدی</button>
+  </div>
+  </div>
+</section>
+

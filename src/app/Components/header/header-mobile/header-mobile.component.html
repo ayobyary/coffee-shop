@@ -142,7 +142,7 @@
                     تم روشن     
                 </div>
             </div>
-            <a href="#" class="text-orange-300 flex items-center gap-x-1.5 sm:gap-x-2 font-Dana font-normal text-sm sm:text-base">
+            <a [routerLink]="'/cart'" (click)="closeNav()" class="text-orange-300 flex items-center gap-x-1.5 sm:gap-x-2 font-Dana font-normal text-sm sm:text-base">
                 <svg class="w-4 h-4 sm:w-5 sm:h-5 shrink-0">
                     <use xlink:href="#shopping-cart"></use>
                 </svg>
@@ -164,7 +164,7 @@
                 <svg class="close-shoping-nav-left w-4 h-4 sm:w-5 sm:h-5 shrink-0 cursor-pointer" (click)="closeNavLeft()">
                     <use xlink:href="#x-mark-mini"></use>
                 </svg>
-                <a href="#" class="text-zinc-700 dark:text-white font-Dana-Medium ">
+                <a [routerLink]="'/cart'" (click)="closeNavLeft()" class="text-zinc-700 dark:text-white font-Dana-Medium ">
                     سبد خرید 
                 </a>
             </div>
@@ -235,9 +235,11 @@
     <use xlink:href="#logo-type"></use>
     </svg>
     <!-- cart-shop-icon -->
-    <svg class="nav-left-open h-5 w-5 sm:h-6 sm:w-6 text-zinc-700 dark:text-white shrink-0 cursor-pointer" (click)="openNavLeft()">
-    <use xlink:href="#shopping-cart"></use>
-    </svg>
+    <a [routerLink]="'/cart'" class="block">
+        <svg class="nav-left-open h-5 w-5 sm:h-6 sm:w-6 text-zinc-700 dark:text-white shrink-0 cursor-pointer">
+            <use xlink:href="#shopping-cart"></use>
+        </svg>
+    </a>
     
   </div>
   

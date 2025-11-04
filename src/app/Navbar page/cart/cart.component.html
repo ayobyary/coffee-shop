@@ -1,0 +1,187 @@
+<section class="cart my-8 md:my-20 md:pt-36  pt-8 mb-10 products ">
+  <div class="container max-w-4xl mx-auto px-4">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-4 md:mb-5">
+      <h1 class="font-Dana-DemiBold text-2xl md:text-3xl text-zinc-700 dark:text-white">سبد خرید</h1>
+      <div *ngIf="cartItems.length > 0" class="flex items-center gap-3">
+        <span class="text-2xl text-gray-800 dark:text-white/70">
+          {{totalItems}} مورد
+        </span>
+        <button 
+          type="button"
+          (click)="clearCart()"
+          class="px-4 py-2 text-sm bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900/50 text-red-600 dark:text-red-400 rounded-lg transition-colors"
+        >
+          پاک کردن همه
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty Cart -->
+    <div *ngIf="cartItems.length === 0" class="text-center py-16 md:py-24">
+      <div class="max-w-md mx-auto">
+        <svg class="w-24 h-24 md:w-32 md:h-32 mx-auto mb-6 text-gray-300 dark:text-white/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+        </svg>
+        <h2 class="font-Dana-DemiBold text-xl md:text-2xl text-zinc-700 dark:text-white mb-3">
+          سبد خرید شما خالی است
+        </h2>
+        <p class="text-gray-500 dark:text-white/70 mb-6">
+          محصولات مورد نظر خود را به سبد خرید اضافه کنید
+        </p>
+        <a 
+          [routerLink]="'/shope'"
+          class="inline-block px-6 py-3 bg-teal-600 hover:bg-teal-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white rounded-lg transition-colors font-Dana-Medium"
+        >
+          رفتن به فروشگاه
+        </a>
+      </div>
+    </div>
+
+    <!-- Cart Items -->
+    <div *ngIf="cartItems.length > 0" class="grid grid-cols-1 lg:grid-cols-5 gap-3 md:gap-7">
+      <!-- Items List -->
+      <div class="lg:col-span-3 space-y-3">
+        <article 
+          *ngFor="let item of cartItems" 
+          class="bg-white/70 dark:bg-zinc-700 shadow-normal rounded-2xl p-2.5 md:p-3 border border-gray-100 dark:border-white/10"
+        >
+          <div class="flex flex-col sm:flex-row gap-3">
+                                     <!-- Product Image -->
+            <div class="relative w-full h-40 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 flex-shrink-0 rounded-lg overflow-hidden bg-gray-300/50 dark:bg-zinc-700/30">
+              <img 
+                [src]="item.image" 
+                [alt]="item.title" 
+                [title]="item.title"
+                class="w-full h-full object-contain"
+              />
+              <span *ngIf="item.category" class="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 px-1.5 py-0.5 sm:px-2 sm:py-1 bg-orange-200/20 dark:bg-orange-300/30 text-orange-300 dark:text-orange-100 text-[10px] sm:text-xs font-Dana-Medium rounded-md">
+                {{item.category}}
+              </span>
+            </div>
+
+            <!-- Product Info -->
+            <div class="flex-1 flex flex-row justify-between min-w-0">
+                <div class="flex flex-col justify-between">
+                    <div class="mb-3">
+                            <h3 class="font-Dana-DemiBold text-base md:text-lg text-zinc-700 dark:text-white mb-1.5 line-clamp-2">
+                            {{item.title}}
+                            </h3>
+                            <div class="flex items-center gap-2 mb-2">
+                            <span class="font-Dana-DemiBold text-lg md:text-xl text-teal-600 dark:text-emerald-500">
+                                {{item.price | number}}
+                            </span>
+                            <span class="text-sm text-gray-500 dark:text-white/60">تومان</span>
+                            </div>
+                        </div>
+                        <!-- Quantity Controls -->
+                        <div class="flex items-center gap-2 bg-gray-100 dark:bg-white/10 rounded-lg p-1">
+                            <button
+                            type="button"
+                            (click)="decrementQuantity(item)"
+                            class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-200 dark:hover:bg-white/20 transition-colors text-zinc-700 dark:text-white"
+                            title="کاهش تعداد"
+                            >
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                            </svg>
+                            </button>
+                            <span class="w-12 text-center font-Dana-DemiBold text-zinc-700 dark:text-white">
+                            {{item.quantity}}
+                            </span>
+                            <button
+                            type="button"
+                            (click)="incrementQuantity(item)"
+                            class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-gray-200 dark:hover:bg-white/20 transition-colors text-zinc-700 dark:text-white"
+                            title="افزایش تعداد"
+                            >
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                            </button>
+                        </div>
+
+                </div>
+              
+              <!-- Quantity Controls and Remove -->
+              <div class="flex items-end justify-between gap-3">
+               
+                <!-- Item Total -->
+                <div class="flex items-center gap-2">
+                  <span class="font-Dana-DemiBold text-lg text-zinc-700 dark:text-white">
+                    {{(item.price * item.quantity) | number}}
+                  </span>
+                  <span class="text-sm text-gray-500 dark:text-white/60">تومان</span>
+                </div>
+
+                <!-- Remove Button -->
+                <button
+                  type="button"
+                  (click)="removeItem(item.productId)"
+                  class="p-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                  title="حذف از سبد خرید"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+             <!-- Order Summary -->
+       <div class="lg:col-span-2">
+         <div class="bg-white dark:bg-zinc-700 shadow-normal rounded-2xl p-3 md:p-4 border border-gray-100 dark:border-white/10 sticky top-24">
+          <h2 class="font-Dana-DemiBold text-lg md:text-xl text-zinc-700 dark:text-white mb-4">
+            خلاصه سفارش
+          </h2>
+
+          <!-- Summary Details -->
+          <div class="space-y-3 mb-4 pb-4 border-b border-gray-100 dark:border-white/10">
+            <div class="flex justify-between items-center text-sm">
+              <span class="text-gray-600 dark:text-white/80">تعداد محصولات:</span>
+              <span class="font-Dana-DemiBold text-zinc-700 dark:text-white">{{totalItems}} مورد</span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span class="text-gray-600 dark:text-white/80">جمع محصولات:</span>
+              <span class="font-Dana-DemiBold text-zinc-700 dark:text-white">{{totalPrice | number}} تومان</span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span class="text-gray-600 dark:text-white/80">هزینه ارسال:</span>
+              <span class="font-Dana-DemiBold text-teal-600 dark:text-emerald-500">رایگان</span>
+            </div>
+          </div>
+
+          <!-- Total -->
+          <div class="flex justify-between items-center mb-4">
+            <span class="font-Dana-DemiBold text-base md:text-lg text-zinc-700 dark:text-white">مبلغ قابل پرداخت:</span>
+            <div class="flex items-center gap-1.5">
+              <span class="font-Dana-DemiBold text-xl md:text-2xl text-teal-600 dark:text-emerald-500">
+                {{totalPrice | number}}
+              </span>
+              <span class="text-xs md:text-sm text-gray-500 dark:text-white/60">تومان</span>
+            </div>
+          </div>
+
+          <!-- Checkout Button -->
+          <button
+            type="button"
+            class="w-full py-2.5 md:py-3 bg-teal-600 hover:bg-teal-700 dark:bg-emerald-500 dark:hover:bg-emerald-600 text-white rounded-lg transition-colors font-Dana-DemiBold text-base md:text-lg mb-3"
+          >
+            ادامه و ثبت سفارش
+          </button>
+
+          <!-- Continue Shopping -->
+          <a 
+            [routerLink]="'/shope'"
+            class="block w-full text-center py-2 text-teal-600 dark:text-emerald-500 hover:bg-teal-50 dark:hover:bg-emerald-900/20 rounded-lg transition-colors font-Dana-Medium text-sm md:text-base"
+          >
+            ادامه خرید
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -6,6 +6,7 @@ import { DicshitnaryComponent } from './Navbar page/dicshitnary/dicshitnary.comp
 import { AboutUsComponent } from './Navbar page/about-us/about-us.component';
 import { BlogComponent } from './Navbar page/blog/blog.component';
 import { ContactUsComponent } from './Navbar page/contact-us/contact-us.component';
+import { CartComponent } from './Navbar page/cart/cart.component';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,7 @@ export const routes: Routes = [
             { path: 'about-us', component: AboutUsComponent },
             { path: 'blog', component: BlogComponent },
             { path: 'contact-us', component: ContactUsComponent },
+            { path: 'cart', component: CartComponent },
         ]
     },
     { path: '**', redirectTo: 'home' }

@@ -68,11 +68,11 @@
   
                         <!-- cart icon hover -->
                             <!-- ایکون سبد خرید هاور -->
-                        <div  class="py-3 cursor-pointer ">
+                        <a [routerLink]="'/cart'" class="py-3 cursor-pointer block">
                             <svg class="w-8 h-8">
                                     <use xlink:href="#shopping-cart"></use>
                             </svg>
-                        </div>
+                        </a>
   
                         <!-- cart icon box // -->
                             <!-- سبد خرید هاور -->
@@ -81,7 +81,7 @@
                             <!-- cart header -->
                             <div class="flex items-center justify-between font-Dana-Medium text-xs">
                                 <span class="text-gray-300 ">1 مورد</span>
-                                <a href="#" class="text-orange-300 tracking-tighter flex items-center font-Dana-Medium ">
+                                <a [routerLink]="'/cart'" class="text-orange-300 tracking-tighter flex items-center font-Dana-Medium ">
                                     مشاهده سبد خرید <svg class="w-5 h-5">
                                         <use xlink:href="#chevron-left-mini" ></use>
                                     </svg>

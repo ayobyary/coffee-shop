@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-shope',
@@ -21,9 +22,6 @@ export class ShopeComponent {
   view: 'grid' | 'list' = 'grid';
   page = 1;
   pageSize = 12;
-
-  // Cart (in-memory)
-  cartItems: { productId: number; qty: number }[] = [];
 
   // Dataset
   categories = ['اسپرسو', 'قهوه ویژه', 'تجاری', 'کپسول', 'ترکیبی'];
@@ -72,19 +70,16 @@ export class ShopeComponent {
   }
 
   addToCart(product: Product): void {
-    const item = this.cartItems.find(i => i.productId === product.id);
-    if (item) item.qty += 1; else this.cartItems.push({ productId: product.id, qty: 1 });
-    // Open left cart sidebar if exists
-    const overlay = document.querySelector('.overlay') as HTMLElement | null;
-    const navLeft = document.querySelector('.nav-left') as HTMLElement | null;
-    if (overlay) overlay.classList.remove('hidden');
-    if (navLeft) navLeft.style.transform = 'translateX(0)';
+    this.cartService.addToCart({
+      id: product.id,
+      title: product.title,
+      image: product.image,
+      price: product.price,
+      category: product.category
+    });
   }
 
-  // Optional: sync URL (can be extended later)
-  // In a future step, we could read/write query params here using Router
-
-  constructor() {
+  constructor(private cartService: CartService) {
     // build 40 mock items based on 8 base images/categories
     const imgs = [1,2,3,4,5,6,7,8].map(i => `assets/images/products/p${i}.png`);
     const cats = ['اسپرسو', 'قهوه ویژه', 'کپسول', 'تجاری', 'ترکیبی'];

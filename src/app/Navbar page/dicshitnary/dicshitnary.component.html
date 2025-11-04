@@ -1,1 +1,148 @@
-<p>dicshitnary works!</p>
+<section class="dictionary my-8 md:my-20 md:pt-36 lg:pt-48 pt-8 mb-10">
+  <div class="container">
+    <!-- Toolbar -->
+    <div class="flex flex-col gap-3 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-4 mb-6" role="region" aria-label="نوار ابزار جستجو و فیلتر دیکشنری">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 w-full items-center">
+        <input 
+          [(ngModel)]="query" 
+          (ngModelChange)="page=1" 
+          type="text" 
+          placeholder="جستجوی اصطلاح..." 
+          class="w-full h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/50 text-sm outline-none border border-gray-200 dark:border-white/10 focus:ring-2 focus:ring-orange-200 dark:focus:ring-white/10 transition-shadow" 
+          aria-label="جستجوی اصطلاح"
+        />
+
+        <select 
+          [(ngModel)]="selectedCategory" 
+          (ngModelChange)="page=1" 
+          class="h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white text-sm border border-gray-200 dark:border-white/10 w-full md:w-auto focus:ring-2 focus:ring-orange-200 dark:focus:ring-white/10 transition-shadow" 
+          title="انتخاب دسته‌بندی"
+        >
+          <option *ngFor="let c of categories" [ngValue]="c" class="bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white">{{c}}</option>
+        </select>
+
+        <select 
+          [(ngModel)]="sortBy" 
+          class="h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white text-sm border border-gray-200 dark:border-white/10 w-full md:w-auto focus:ring-2 focus:ring-orange-200 dark:focus:ring-white/10 transition-shadow" 
+          title="مرتب‌سازی"
+        >
+          <option value="alphabetical" class="bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white">الفبایی</option>
+          <option value="category" class="bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white">بر اساس دسته</option>
+        </select>
+
+        <select 
+          [(ngModel)]="pageSize" 
+          (ngModelChange)="page=1" 
+          class="h-10 rounded-lg px-3 bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white text-sm border border-gray-200 dark:border-white/10 w-full md:w-auto focus:ring-2 focus:ring-orange-200 dark:focus:ring-white/10 transition-shadow" 
+          title="تعداد در صفحه"
+        >
+          <option [ngValue]="20" class="bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white">20</option>
+          <option [ngValue]="40" class="bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white">40</option>
+          <option [ngValue]="60" class="bg-white dark:bg-zinc-700 text-zinc-700 dark:text-white">60</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Letter Filter -->
+    <div class="mb-6">
+      <div class="flex flex-wrap gap-2 items-center">
+        <button
+          type="button"
+          (click)="selectLetter(null)"
+          [ngClass]="{
+            'bg-orange-300 text-white dark:text-zinc-700': selectedLetter === null,
+            'bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-white': selectedLetter !== null
+          }"
+          class="px-3 py-1.5 rounded-lg text-sm font-Dana-Medium transition-colors hover:bg-orange-200 dark:hover:bg-white/20"
+        >
+          همه
+        </button>
+        <button
+          *ngFor="let letter of persianLetters"
+          type="button"
+          (click)="selectLetter(letter)"
+          [ngClass]="{
+            'bg-orange-300 text-white dark:text-zinc-700': selectedLetter === letter,
+            'bg-gray-100 dark:bg-white/10 text-gray-700 dark:text-white': selectedLetter !== letter
+          }"
+          class="px-3 py-1.5 rounded-lg text-sm font-Dana-Medium transition-colors hover:bg-orange-200 dark:hover:bg-white/20 min-w-[36px] text-center"
+        >
+          {{letter}}
+        </button>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="flex items-center justify-between text-sm text-gray-500 dark:text-white/70 mb-4">
+      <span>نتیجه: {{total}} اصطلاح</span>
+      <span *ngIf="totalPages > 0">صفحه {{page}} از {{totalPages}}</span>
+    </div>
+
+    <!-- Empty state -->
+    <div *ngIf="total === 0" class="text-center py-16 text-gray-500 dark:text-white/70">
+      <p class="text-lg md:text-xl font-Dana-Medium mb-4 text-gray-600 dark:text-white/90">اصطلاحی یافت نشد</p>
+      <p class="text-sm md:text-base text-gray-500 dark:text-white/80">فیلترها را تغییر دهید یا عبارت جستجو را اصلاح کنید.</p>
+    </div>
+
+    <!-- Dictionary Terms Grid -->
+    <div *ngIf="total > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      <article *ngFor="let term of pageItems" class="bg-white dark:bg-zinc-700 shadow-normal rounded-2xl p-4 md:p-6 border border-gray-100 dark:border-white/10 hover:shadow-lg transition-shadow">
+        <!-- Header -->
+        <div class="mb-3 md:mb-4">
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <h3 class="font-Dana-DemiBold text-lg md:text-xl text-zinc-700 dark:text-white flex-1">
+              {{term.word}}
+            </h3>
+            <span class="px-2.5 py-1 bg-orange-200/20 dark:bg-orange-300/30 text-orange-300 dark:text-orange-100 text-xs font-Dana-Medium rounded-md whitespace-nowrap shrink-0">
+              {{term.category}}
+            </span>
+          </div>
+          <div *ngIf="term.englishWord" class="text-sm text-gray-500 dark:text-white/70 font-Dana-Medium mb-2">
+            {{term.englishWord}}
+          </div>
+          <p class="text-sm md:text-base text-teal-600 dark:text-emerald-400 font-Dana-Medium">
+            {{term.meaning}}
+          </p>
+        </div>
+
+        <!-- Description -->
+        <p class="text-sm text-gray-600 dark:text-white/90 leading-relaxed line-clamp-4">
+          {{term.description}}
+        </p>
+      </article>
+    </div>
+
+    <!-- Pagination -->
+    <div *ngIf="totalPages > 1" class="flex items-center justify-center gap-2 mt-6">
+      <button 
+        type="button"
+        class="px-3 h-9 rounded-md bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-zinc-700 dark:text-white" 
+        (click)="goToPage(page-1)" 
+        [disabled]="page === 1"
+      >
+        قبلی
+      </button>
+      <ng-container *ngFor="let i of [].constructor(totalPages); let idx = index">
+        <button 
+          type="button"
+          class="px-3 h-9 rounded-md transition-colors text-zinc-700 dark:text-white" 
+          [ngClass]="{
+            'bg-orange-200 dark:bg-orange-300 text-white dark:text-zinc-700': (idx+1) === page,
+            'bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20': (idx+1) !== page
+          }"
+          (click)="goToPage(idx+1)"
+        >
+          {{idx+1}}
+        </button>
+      </ng-container>
+      <button 
+        type="button"
+        class="px-3 h-9 rounded-md bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-zinc-700 dark:text-white" 
+        (click)="goToPage(page+1)" 
+        [disabled]="page === totalPages"
+      >
+        بعدی
+      </button>
+    </div>
+  </div>
+</section>

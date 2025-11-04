@@ -57,8 +57,8 @@
     </div>
   </div>
 
-  <!-- Grid/List with existing card style -->
-  <div *ngIf="total>0" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5">
+  <!-- Grid with existing card style -->
+  <div *ngIf="total>0 && view==='grid'" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-5">
     <div *ngFor="let p of pageItems" class="p-2 mb-2 md:p-5 bg-white dark:bg-zinc-700 shadow-normal rounded-2xl">
       <div class="relative mb-5 ">
         <img class="w-32 md:w-auto mx-auto" [src]="p.image" [alt]="p.title" alt="product image">
@@ -92,6 +92,40 @@
           <svg *ngFor="let s of [1,2,3,4,5]; let idx = index" [ngClass]="{ 'text-yellow-500': (p.rating||0) >= (idx+1), 'text-gray-300': (p.rating||0) < (idx+1) }">
             <use  xlink:href="#star"></use>
           </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- List view -->
+  <div *ngIf="total>0 && view==='list'" class="flex flex-col gap-3">
+    <div *ngFor="let p of pageItems" class="bg-white dark:bg-zinc-700 shadow-normal rounded-2xl border border-gray-100 dark:border-white/10 p-3 md:p-4">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-4">
+        <div class="relative shrink-0 flex items-center justify-center">
+          <img class="w-24 h-24 object-contain md:w-28 md:h-28" [src]="p.image" [alt]="p.title">
+          <span class="hidden md:block absolute right-1.5 top-1.5 h-5 md:h-[26px] font-Dana-DemiBold bg-orange-300  text-white dark:text-zinc-700 px-2 md:px-2.5 rounded-full text-xs/[22px] md:text-sm/[26px]">ویژه</span>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h5 class="font-Dana-Medium text-base md:text-lg text-zinc-700 dark:text-white line-clamp-2">{{p.title}}</h5>
+          <div class="flex items-center gap-3 mt-1.5">
+            <div class=" text-teal-600 dark:text-emerald-500 flex items-center gap-1">
+              <span class="font-Dana-DemiBold text-lg">{{p.price | number}}</span>
+              <span class="text-xs tracking-tight">تومان</span>
+            </div>
+            <div class="child:size-4 child:lg:size-5 flex flex-row-reverse items-center justify-between">
+              <svg *ngFor="let s of [1,2,3,4,5]; let idx = index" [ngClass]="{ 'text-yellow-500': (p.rating||0) >= (idx+1), 'text-gray-300': (p.rating||0) < (idx+1) }">
+                <use xlink:href="#star"></use>
+              </svg>
+            </div>
+            <span class="text-xs" [class.text-emerald-600]="p.inStock" [class.text-gray-400]="!p.inStock">{{ p.inStock ? 'موجود' : 'ناموجود' }}</span>
+          </div>
+          <div class="mt-2 text-sm text-gray-500 dark:text-white/60 line-clamp-2 hidden md:block">
+            بهترین انتخاب برای قهوه‌دوستان؛ عطر و طعم متعادل.
+          </div>
+        </div>
+        <div class="flex items-center sm:flex-col sm:items-end gap-2 sm:gap-3">
+          <button class="h-10 px-4 bg-teal-600 text-white rounded-lg disabled:opacity-50" [disabled]="!p.inStock" (click)="addToCart(p)">افزودن به سبد</button>
+          <button class="h-10 px-3 rounded-lg bg-gray-100 dark:bg-white/10">جزئیات</button>
         </div>
       </div>
     </div>

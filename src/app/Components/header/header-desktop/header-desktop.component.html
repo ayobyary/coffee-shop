@@ -11,7 +11,7 @@
             <!-- لوگو -->
             <!-- logo -->
             <div class=" w-14 h-14 flex items-center justify-center">
-                <img  src="assets/images/app-logo.png" alt="golden-coofe" class="w-full h-full">
+                <img  src="assets/images/app-logo.png" alt="golden-coofe" title="لوگو" class="w-full h-full">
             </div>
   
             <!-- بخش منو -->
@@ -80,7 +80,7 @@
                             
                             <!-- cart header -->
                             <div class="flex items-center justify-between font-Dana-Medium text-xs">
-                                <span class="text-gray-300 ">1 مورد</span>
+                                <span class="text-gray-300 ">{{ totalItems > 0 ? (totalItems + ' مورد') : 'سبد خرید خالی است' }}</span>
                                 <a [routerLink]="'/cart'" class="text-orange-300 tracking-tighter flex items-center font-Dana-Medium ">
                                     مشاهده سبد خرید <svg class="w-5 h-5">
                                         <use xlink:href="#chevron-left-mini" ></use>
@@ -90,42 +90,24 @@
   
                             <!-- cart body -->
                                 <div class="flex flex-col  border-b border-gray-300 dark:border-white/10 divide-y divide-gray-100 dark:divide-white/10 child:py-5">
-                                <!--  product -->
-                                <div class="flex gap-x-2.5 pb-1 ">
+                                <!--  Empty state -->
+                                <div *ngIf="cartItems.length === 0" class="py-4 text-center text-sm text-gray-500 dark:text-white/70">سبد خرید شما خالی است.</div>
+                                <!--  items (original card style) -->
+                                <div *ngFor="let ci of cartItems | slice:0:3" class="flex gap-x-2.5 pb-1 ">
                                     <!-- imgs -->
-                                    <img src="assets/images/products/p2.png" alt="product" class="w-30 h-30">
+                                    <img [src]="ci.image" [alt]="ci.title" title="{{ci.title}}" class="w-30 h-30">
                                     <!-- text -->
                                     <div class="flex flex-col  justify-between">
-                                        <h4 class="font-Dana-Medium text-base text-zinc-700 dark:text-white line-height-[24px] line-clamp-2">قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</h4>
+                                        <h4 class="font-Dana-Medium text-base text-zinc-700 dark:text-white line-height-[24px] line-clamp-2">{{ ci.title }}</h4>
                                         <div class=" ">
-                                    
-                                        <p class="font-Dana font-medium inline-block  text-teal-600 text-xs">14.500 تومان تخفیف</p>
-                                        <div class="flex items-center font-Dana-Medium  text-lg font-medium text-zinc-700  dark:text-white">
-                                            175,000 
-                                            <p class="font-Dana  text-sm mr-1"> تومان</p>
+                                            <p class="font-Dana font-medium inline-block  text-teal-600 text-xs" *ngIf="false">14.500 تومان تخفیف</p>
+                                            <div class="flex items-center font-Dana-Medium  text-lg font-medium text-zinc-700  dark:text-white">
+                                                {{ (ci.price * ci.quantity) | number }}
+                                                <p class="font-Dana  text-sm mr-1"> تومان</p>
+                                            </div>
                                         </div>
-                                        </div>
-                                        
                                     </div>
-                                </div> 
-                                <div class="flex gap-x-2.5 pb-1 hidden">
-                                    <!-- imgs -->
-                                    <img src="images/products/p2.png" alt="product" class="w-30 h-30">
-                                    <!-- text -->
-                                    <div class="flex flex-col  justify-between">
-                                        <h4 class="font-Dana-Medium text-base text-zinc-700 dark:text-white line-height-[24px] line-clamp-2">قهوه اسپرسو بن مانو مدل پریسکا 250 گرمی</h4>
-                                        <div class=" ">
-                                    
-                                        <p class="font-Dana  text-teal-600 text-xs">14.500 تومان تخفیف</p>
-                                        <div class="flex items-center font-Dana-Medium text-xl font-medium text-zinc-700  dark:text-white">
-                                            175,000 
-                                            <p class="font-Dana  text-sm mr-1"> تومان</p>
-                                        </div>
-                                        </div>
-                                        
-                                    </div>
-                                </div> 
-                                
+                                </div>
                                 </div>   
                             
                             <!-- cart footer -->
@@ -133,7 +115,7 @@
                                 <!-- price -->
                                 <div class="flex flex-col justify-center" > 
                                 <p class=" font-Dana text-xs text-gray-300 dark:text-white  tracking-tightest">مبلغ قابل پرداخت</p>
-                                <p class=" text-zinc-700 dark:text-white">350,000 تومان</p>
+                                <p class=" text-zinc-700 dark:text-white">{{ totalPrice | number }} تومان</p>
                                 </div>
                                 <div class="w-36 h-14 bg-teal-600 text-white   text-xl font-Dana  rounded-2xl flex items-center justify-center" >ثبت سفارش </div>
                             </div>

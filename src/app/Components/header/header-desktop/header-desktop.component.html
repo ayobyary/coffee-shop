@@ -137,13 +137,48 @@
                 </div>
                 <span class="w-px h-14 bg-white/20 mr-2 ml-2  xl:mr-10 xl:ml-11 "></span>
   
-                <a href="#" class="flex items-center xl:gap-2.5 tracking-tightest text-xl font-normal ">
-                    <svg class="w-8.5 h-8.5 rotate-180 ">
-                        <use xlink:href="#arrow-left-end-on-rectangle"></use>
-                    </svg>
-  
-                    <p class="hidden xl:block">ورود | ثبت‌نام</p>
-                </a>
+                <div class="relative group ">
+                    <a href="#" class="flex items-center gap-2.5 xl:gap-2.5 h-14 leading-none tracking-tightest text-xl font-normal ">
+                        <svg class="w-8.5 h-8.5 rotate-180 ">
+                            <use xlink:href="#arrow-left-end-on-rectangle"></use>
+                        </svg>
+                        <p class="hidden xl:block">ورود | ثبت‌نام</p>
+                    </a>
+
+                    <!-- user dropdown on hover -->
+                    <div class="absolute left-0 mt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all delay-75 w-52 bg-white dark:bg-zinc-700 border-t-[3px] border-orange-300 shadow-normal rounded-2xl p-4">
+                        <div class="flex flex-col divide-y divide-gray-100 dark:divide-white/10">
+                            <a href="#" class="flex items-center justify-between py-3 text-zinc-700 dark:text-white hover:text-orange-600 dark:hover:text-orange-200 hover:bg-orange-100/60 dark:hover:bg-orange-300/10 rounded-xl px-3 transition-colors">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-5 h-5"><use xlink:href="#shopping-bag"></use></svg>
+                                    سفارشات من
+                                </span>
+                                <svg class="w-4 h-4 opacity-60"><use xlink:href="#chevron-left-mini"></use></svg>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-3 text-zinc-700 dark:text-white hover:text-orange-600 dark:hover:text-orange-200 hover:bg-orange-100/60 dark:hover:bg-orange-300/10 rounded-xl px-3 transition-colors">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-5 h-5"><use xlink:href="#envelope"></use></svg>
+                                    لیست پیام ها
+                                </span>
+                                <svg class="w-4 h-4 opacity-60"><use xlink:href="#chevron-left-mini"></use></svg>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-3 text-zinc-700 dark:text-white hover:text-orange-600 dark:hover:text-orange-200 hover:bg-orange-100/60 dark:hover:bg-orange-300/10 rounded-xl px-3 transition-colors">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-5 h-5"><use xlink:href="#cog-6-tooth"></use></svg>
+                                    اطلاعات کاربری
+                                </span>
+                                <svg class="w-4 h-4 opacity-60"><use xlink:href="#chevron-left-mini"></use></svg>
+                            </a>
+                            <a href="#" class="flex items-center justify-between py-3 text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-100/70 dark:hover:bg-rose-400/10 rounded-xl px-3 transition-colors">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-5 h-5"><use xlink:href="#arrow-left-end-on-rectangle"></use></svg>
+                                    خروج از حساب
+                                </span>
+                                <svg class="w-4 h-4 opacity-60"><use xlink:href="#chevron-left-mini"></use></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
         </div>
         
     </div>
